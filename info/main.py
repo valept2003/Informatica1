@@ -78,4 +78,16 @@ user=(input('Ingrese usuario')).capitalize()
 passw=input('Ingrese contraseña')
 if Menu_ingreso(user,passw):
     print('Ingresó correctamente al sistema al sistema')
-    Menu_1()
+    while True:
+      try:
+        Menu_1= int(input("Ingrese alguna opción\n1.Gestionar medicamentos\n2.Gestionar proveedores\n3.Gestionar ubicacion\n4.Salir"))
+        if Menu_1==1:
+          gestionar_m()
+        elif Menu_1==2:
+          gestionar_p()
+        elif Menu_1==3:
+          gestionar_u()
+        elif Menu_1==4:
+          break
+      except:
+        print("Ingrese opción valida")
