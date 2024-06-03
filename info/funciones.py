@@ -1,7 +1,7 @@
 import mysql.connector
 mydb = mysql.connector.connect(
   host="localhost",
-  user="informatica 1",
+  user="informatica1",
   password="bio123"
 )
 mycursor = mydb.cursor()
@@ -35,9 +35,7 @@ def agregar_m(Lote, Nombre_medicamentos, Distribuidor, Cantidad, Fecha_llegada, 
         mydb.commit()
     except mysql.connector.Error as error:
         print("Error:", error)
-    finally:
-        cursor.close()
-        mydb.close()
+
 def actualizar_m(Lote, Nombre_medicamentos, Distribuidor, Cantidad, Fecha_llegada, Precio):
     """Esta función actualiza la información de un medicamentos a partir de su Lote.
     Argumentos= Nueva información
@@ -48,24 +46,20 @@ def actualizar_m(Lote, Nombre_medicamentos, Distribuidor, Cantidad, Fecha_llegad
         mydb.commit()
     except mysql.connector.Error as error:
         print("Error:", error)
-    finally:
-        cursor.close()
-        mydb.close()
+
 def buscar_m(Lote):
     """Esta función busca el medicamento especificado por el Lote.
     Argumentos= Lote del medicamento
-    Retorna: El medicamento si encuentra alguna coincidencia,si no retorna None
+
     """
     cursor=mycursor
     try:
         cursor.execute("SELECT * FROM Medicamentos WHERE Lote=%s",(Lote,))
         medicamento=cursor.fetchone()
-        return medicamento
+        print(medicamento)
     except mysql.connector.Error as error:
         print("Error:", error)
-    finally:
-        cursor.close()
-        mydb.close()
+
 def eliminar_m(Lote):
     """Esta función elimina el medicamento especificado por el Lote.
     Argumentos= Lote del medicamento
@@ -76,23 +70,20 @@ def eliminar_m(Lote):
         mydb.commit()
     except mysql.connector.Error as error:
         print("Error:", error)
-    finally:
-        cursor.close()
-        mydb.close()
+
 def ver_m():
     """Esta función muestra todos los medicamentos existentes en la base de datos
-    Retorna: Una lista con todos los medicamentos si encuentra alguno, sino una lista vacía.
+
     """
     cursor=mycursor
     try:
         cursor.execute("SELECT * FROM Medicamentos")
         medicamentos=cursor.fetchall()
-        return medicamentos
+        for medicamento in medicamentos:
+            print(medicamento)
     except mysql.connector.Error as error:
         print("Error:", error)
-    finally:
-        cursor.close()
-        mydb.close()
+
 def agregar_p(Codigo, Nombre, Apellido, Documento, Entidad):
     """Esta función agrega un proveedor con la información que se le entregue.
     Argumentos= Datos del proveedor
@@ -103,9 +94,7 @@ def agregar_p(Codigo, Nombre, Apellido, Documento, Entidad):
         mydb.commit()
     except mysql.connector.Error as error:
         print("Error:", error)
-    finally:
-        cursor.close()
-        mydb.close()
+
 def actualizar_p(Codigo, Nombre, Apellido, Documento, Entidad):
     """Esta función actualiza la información de un proveedor correspondiente al codigo proporcionado.
     Argumentos= Datos a actualizar del proveedor.
@@ -116,24 +105,19 @@ def actualizar_p(Codigo, Nombre, Apellido, Documento, Entidad):
         mydb.commit()
     except mysql.connector.Error as error:
         print("Error:", error)
-    finally:
-        cursor.close()
-        mydb.close()
+
 def buscar_p(Codigo):
     """Esta función busca un proveedor correspondiente al codigo proporcionado.
     Argumentos= Codigo del proveedor.
-    Retorna: Tupla con el proveedor encontrado.
     """      
     cursor=mycursor
     try:
         cursor.execute("SELECT * FROM Proveedores WHERE Codigo=%s",(Codigo,))
         proveedor=cursor.fetchone()
-        return proveedor
+        print(proveedor)
     except mysql.connector.Error as error:
         print("Error:", error)
-    finally:
-        cursor.close()
-        mydb.close()
+
 def eliminar_p(Codigo):
     """Esta función elimina a un proveedor correspondiente al codigo proporcionado.
     Argumentos= Codigo del proveedor.
@@ -144,23 +128,18 @@ def eliminar_p(Codigo):
         mydb.commit()
     except mysql.connector.Error as error:
         print("Error:", error)
-    finally:
-        cursor.close()
-        mydb.close()
+
 def ver_p():
     """Esta función muestra todos los proveedores existentes en la base de datos.
-    Retorna: Lista de tuplas con todos los proveedores, sino una lista vacía.
     """  
     cursor=mycursor
     try:
         cursor.execute("SELECT * FROM Proveedores")
         proveedores=cursor.fetchall()
-        return proveedores
+        for proveedor in proveedores:
+            print(proveedor)
     except mysql.connector.Error as error:
         print("Error:", error)
-    finally:
-        cursor.close()
-        mydb.close()
 
 def agregar_u(Codigo, Nombre_u, Telefono, Entidad_p):
     """Esta función agrega una nueva ubicación con la información proporcionada.
@@ -172,9 +151,6 @@ def agregar_u(Codigo, Nombre_u, Telefono, Entidad_p):
         mydb.commit()
     except mysql.connector.Error as error:
         print("Error:", error)
-    finally:
-        cursor.close()
-        mydb.close()
 def actualizar_u(Codigo, Nombre_u, Telefono, Entidad_p):
     """Esta función actualiza la información de una ubicación correspondiente al codigo proporcionado
     Argumentos= Datos nuevos de la ubicación.
@@ -185,24 +161,17 @@ def actualizar_u(Codigo, Nombre_u, Telefono, Entidad_p):
         mydb.commit()
     except mysql.connector.Error as error:
         print("Error:", error)
-    finally:
-        cursor.close()
-        mydb.close()
 def buscar_u(Codigo):
     """Esta función busca una ubicación de acuerdo al codigo proporcionado.
     Argumentos= Codigo de la ubicación.
-    Retorna: Tupla con la ubicación encontrada.
     """  
     cursor=mycursor
     try:
         cursor.execute("SELECT * FROM Ubicaciones WHERE Codigo=%s",(Codigo,))
         ubicacion=cursor.fetchone()
-        return ubicacion
+        print(ubicacion)
     except mysql.connector.Error as error:
         print("Error:", error)
-    finally:
-        cursor.close()
-        mydb.close()
 def eliminar_u(Codigo):
     """Esta función elimina una ubicación correpondiente al codigo proporcionado.
     Argumentos= Codigo de la ubicación.
@@ -213,23 +182,18 @@ def eliminar_u(Codigo):
         mydb.commit()
     except mysql.connector.Error as error:
         print("Error:", error)
-    finally:
-        cursor.close()
-        mydb.close()
 def ver_u():
     """Esta función muestra todas las ubicaciones existentes en la base de datos.
-    Retorna: Lista de tuplas con las ubicaciones encontradas, sino una lista vacia.
     """  
     cursor=mycursor
     try:
         cursor.execute("SELECT * FROM Ubicaciones")
         ubicaciones=cursor.fetchall()
-        return ubicaciones
+        for ubicacion in ubicaciones:
+            print(ubicacion)
     except mysql.connector.Error as error:
         print("Error:", error)
-    finally:
-        cursor.close()
-        mydb.close()
+
 def Menu_m():
     print("1.Ingresar nuevo medicamento\n2.Actualizar información del medicamento\n3.Buscar medicamento\n4.Ver todos los medicamentos\n5.Eliminar medicamento\n6.Volver al menu principal")
 def gestionar_m():

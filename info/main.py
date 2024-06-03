@@ -3,7 +3,7 @@ from funciones import*
 import mysql.connector
 mydb = mysql.connector.connect(
   host="localhost",
-  user="informatica 1",
+  user="informatica1",
   password="bio123"
 )
 
@@ -71,8 +71,6 @@ if Tablas_vacias("Proveedores"):
   ]
   mycursor.executemany(sql_insert_prov, val_prov)
   mydb.commit()
-mycursor.close()
-mydb.close()
 
 user=(input('Ingrese usuario')).capitalize()
 passw=input('Ingrese contraseña')
