@@ -195,8 +195,12 @@ def ver_u():
         print("Error:", error)
 
 def Menu_m():
+    """Esta función imprime un menú para la gestion de los medicamentos.
+    """      
     print("1.Ingresar nuevo medicamento\n2.Actualizar información del medicamento\n3.Buscar medicamento\n4.Ver todos los medicamentos\n5.Eliminar medicamento\n6.Volver al menu principal")
 def gestionar_m():
+    """Esta función se encarga de gestionar la información de los medicamentos, usando funciones previamente definidas.
+    """  
     while True:
         Menu_m()
         op=int(input("Ingrese opción a realizar"))
@@ -229,8 +233,12 @@ def gestionar_m():
         else:
             print("Ingrese opción valida")
 def Menu_p():
+    """Esta función imprime un menú para la gestion de los proveedores.
+    """  
     print("1.Ingresar nuevo proveedor\n2.Actualizar información del proveedor\n3.Buscar proveedor\n4.Ver todos los proveedores\n5.Eliminar proveedor\n6.Volver al menu principal")
 def gestionar_p():
+    """Esta función se encarga de gestionar la información de los proveedores, usando funciones previamente definidas.
+    """      
     while True:
         Menu_p()
         op=int(input("Ingrese opción a realizar"))
@@ -261,8 +269,12 @@ def gestionar_p():
         else:
             print("Ingrese opción valida")
 def Menu_u():
+    """Esta función imprime un menu para la gestión de las ubicaciones.
+    """  
     print("1.Ingresar nueva ubicación\n2.Actualizar información de la ubicación\n3.Buscar ubicación\n4.Ver todas las ubicaciones\n5.Eliminar ubicaciones\n6.Volver al menu principal")
 def gestionar_u():
+    """Esta función se encarga de gestionar la información de las ubicaciones, usando funciones previamente definidas.
+    """  
     while True:
         Menu_u()
         op=int(input("Ingrese opción a realizar"))
