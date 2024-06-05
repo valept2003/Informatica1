@@ -1,4 +1,6 @@
 #Victoria Pérez y Valentina Pérez Informatica 1 Trabajo final.
+""" Primero se establece la conexión con MySQL y se define el cursor.
+"""
 from funciones import*
 import mysql.connector
 mydb = mysql.connector.connect(
@@ -8,7 +10,10 @@ mydb = mysql.connector.connect(
 )
 
 mycursor = mydb.cursor()
-
+""" Se crea la base de datos y tablas para la gestión de información si no existen,
+luego se utiliza la funcion Tablas_vacias previamente defininida para verificar que estas no poseen información
+y así evitar escribir varias veces la misma información en cada tabla.
+"""
 mycursor.execute("CREATE DATABASE IF NOT EXISTS INFORMATICA1")
 mydb.database = "INFORMATICA1"
 mycursor = mydb.cursor()
@@ -72,20 +77,33 @@ if Tablas_vacias("Proveedores"):
   mycursor.executemany(sql_insert_prov, val_prov)
   mydb.commit()
 
-user=(input('Ingrese usuario')).capitalize()
-passw=input('Ingrese contraseña')
-if Menu_ingreso(user,passw):
-    print('Ingresó correctamente al sistema al sistema')
-    while True:
-      try:
-        Menu_1= int(input("Ingrese alguna opción\n1.Gestionar medicamentos\n2.Gestionar proveedores\n3.Gestionar ubicacion\n4.Salir"))
-        if Menu_1==1:
-          gestionar_m()
-        elif Menu_1==2:
-          gestionar_p()
-        elif Menu_1==3:
-          gestionar_u()
-        elif Menu_1==4:
-          break
-      except:
-        print("Ingrese opción valida")
+""" A partir de esta sección empieza el codigo que se encarga de mostrar al usuario los menus y opciones disponibles,
+ validando antes que se encuentre registrado el usuario en la base de datos utilizando la función Menu_ingreso.
+"""
+while True:
+  try:
+    Menu_apertura=int(input("Ingrese opción a realizar\n1.Ingresar al sistema\n2.Salir"))
+    if Menu_apertura==1:
+      user=(input('Ingrese usuario')).capitalize()
+      passw=input('Ingrese contraseña')
+      if Menu_ingreso(user,passw):
+          print('Ingresó correctamente al sistema al sistema')
+          while True:
+            try:
+              Menu_1= int(input("Ingrese alguna opción\n1.Gestionar medicamentos\n2.Gestionar proveedores\n3.Gestionar ubicacion\n4.Salir"))
+              if Menu_1==1:
+                gestionar_m()
+              elif Menu_1==2:
+                gestionar_p()
+              elif Menu_1==3:
+                gestionar_u()
+              elif Menu_1==4:
+                    break
+            except:
+              print("Ingrese opción valida")
+    elif Menu_apertura==2:
+      break
+    else:
+      print("Ingrese opción valida")
+  except:
+    print("Intente nuevamente")
