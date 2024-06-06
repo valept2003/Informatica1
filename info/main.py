@@ -1,4 +1,5 @@
 #Victoria Pérez y Valentina Pérez Informatica 1 Trabajo final.
+# Se le manda tambien carpeta con las funciones y el main debido a que presentamos problemas con github y los commits de la otra no aparecían, y tocaba mandarnos el avance por otro medio.
 """ Primero se establece la conexión con MySQL y se define el cursor.
 """
 from funciones import*
