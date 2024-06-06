@@ -211,7 +211,7 @@ def entidad():
     entidades=mycursor.fetchall()
     print("Entidades disponibles")
     for entidad in entidades:
-        print(f"Entidad: {entidad[4]}")
+        print(f"Entidad: {entidad[0]}")
 
 def Menu_m():
     """Esta función imprime un menú para la gestion de los medicamentos.
