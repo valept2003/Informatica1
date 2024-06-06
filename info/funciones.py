@@ -193,6 +193,25 @@ def ver_u():
             print(ubicacion)
     except mysql.connector.Error as error:
         print("Error:", error)
+def codigo_proveedores():
+    """Esta función imprime los proveedores disponibles mostrando sus codigos y nombres completos
+    """
+    sql = "SELECT Codigo, Nombre, Apellido FROM Proveedores"
+    mycursor.execute(sql)
+    proveedores=mycursor.fetchall()
+    print("Proveedores disponibles")
+    for proveedor in proveedores:
+        print(f"Codigo: {proveedor[0]}, Nombre: {proveedor[1]} {proveedor[2]}")
+
+def entidad():
+    """Esta función imprime las entidades proveedoras disponibles.
+    """
+    sql = "SELECT Entidad FROM Proveedores"
+    mycursor.execute(sql)
+    entidades=mycursor.fetchall()
+    print("Entidades disponibles")
+    for entidad in entidades:
+        print(f"Entidad: {entidad[4]}")
 
 def Menu_m():
     """Esta función imprime un menú para la gestion de los medicamentos.
@@ -207,17 +226,19 @@ def gestionar_m():
         if op==1:
             Lote=input("Ingrese Lote")
             Nombre_medicamentos=input("Ingrese nombre del medicamento")
-            Distribuidor=int(input("Ingrese codigo del distribuidor"))
+            codigo_proveedores()
+            Distribuidor=int(input("Ingrese codigo del distribuidor de la lista anterior"))
             Cantidad=int(input("Ingrese cantidad en bodega"))
-            Fecha_llegada=input("Ingrese fecha de llegada")
+            Fecha_llegada=input("Ingrese fecha de llegada (YYYY-MM-DD):")
             Precio=int(input("Ingrese precio"))
             agregar_m(Lote, Nombre_medicamentos, Distribuidor, Cantidad, Fecha_llegada, Precio)
         elif op==2:
             Lote=input("Ingrese Lote")
             Nombre_medicamentos=input("Ingrese nombre del medicamento")
-            Distribuidor=int(input("Ingrese codigo del distribuidor"))
+            codigo_proveedores()
+            Distribuidor=int(input("Ingrese codigo del distribuidor de la lista anterior"))
             Cantidad=int(input("Ingrese cantidad en bodega"))
-            Fecha_llegada=input("Ingrese fecha de llegada")
+            Fecha_llegada=input("Ingrese fecha de llegada (YYYY-MM-DD)")
             Precio=int(input("Ingrese precio"))
             actualizar_m(Lote, Nombre_medicamentos, Distribuidor, Cantidad, Fecha_llegada, Precio)
         elif op==3:
@@ -282,13 +303,15 @@ def gestionar_u():
             Codigo=(input("Ingrese codigo de la ubicación"))
             Nombre_u=input("Ingrese nombre de la ubicación")
             Telefono=int(input("Ingrese Telefono de la ubicación"))
-            Entidad_p=input("Ingrese entidad proveedora")
+            entidad()
+            Entidad_p=input("Ingrese entidad proveedora de la lista anterior")
             agregar_u(Codigo, Nombre_u, Telefono, Entidad_p)
         elif op==2:
             Codigo=(input("Ingrese codigo de la ubicación"))
             Nombre_u=input("Ingrese nombre de la ubicación")
             Telefono=int(input("Ingrese Telefono de la ubicación"))
-            Entidad_p=input("Ingrese entidad proveedora")
+            entidad()
+            Entidad_p=input("Ingrese entidad proveedora de la lista anterior")
             actualizar_u(Codigo, Nombre_u, Telefono, Entidad_p)
         elif op==3:
             Codigo=(input("Ingrese codigo de la ubicación"))
